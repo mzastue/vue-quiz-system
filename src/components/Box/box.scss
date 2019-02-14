@@ -1,0 +1,86 @@
+@import '../../assets/css/style.scss';
+
+.text-media {
+  @include breakpoint(md) {
+    @supports (display: grid) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: var(--space-md); // gap between text and media elements
+
+      &.text-media--invert {
+        > :first-child {
+          order: 2;
+        }
+
+        > :last-child {
+          order: 1;
+        }
+      }
+
+      &.text-media--col-1 {
+        grid-template-columns: 1fr;
+
+        .text-component {
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .text-media__btns {
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+.text-media__text {
+  margin-bottom: var(--space-md);
+
+  .text-component {
+    max-width: 720px; // set max-width for text components
+  }
+
+  @include breakpoint(md) {
+    @supports (display: grid) {
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.text-media__text-inner {
+  width: 100%;
+}
+
+.text-media__media {
+  video, img, svg {
+    display: block;
+  }
+
+  video, img {
+    width: 100%;
+    height: auto;
+  }
+
+  @supports (display: grid) {
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+// buttons
+.text-media__btns {
+  display: flex;
+
+  > * {
+    margin-right: var(--space-xs);
+  }
+
+  > :last-child {
+    margin-right: 0;
+  }
+}

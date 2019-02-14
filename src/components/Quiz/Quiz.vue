@@ -1,7 +1,8 @@
 <template>
   <div id="quiz">
     <h1>Welcome</h1>
-    <h3>Step: {{ currentQuestionIndex + 1 }} / {{ questions.length }}</h3>
+    <WithSteps v-if="config.showSteps" :current="currentQuestionIndex + 1" :total="questions.length" />
+    <WithScore v-if="config.showScore" :score="score" />
     <Question
       @clickAnswer="handleClickAnswer"
       :question="currentQuestion.question"
@@ -15,7 +16,10 @@
 </template>
 
 <script>
+import config from './config';
 import Question from './Question/Question.vue';
+import WithScore from './WithScore/WithScore.vue';
+import WithSteps from './WithSteps/WithSteps.vue';
 
 const status = {
   NOT_STARTED: 0,
@@ -28,6 +32,8 @@ export default {
 
   components: {
     Question,
+    WithScore,
+    WithSteps,
   },
 
   props: {
@@ -40,6 +46,7 @@ export default {
 
   data() {
     return {
+      config,
       score: 0,
       currentQuestionIndex: 0,
       status: status.NOT_STARTED,
