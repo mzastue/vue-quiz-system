@@ -1,0 +1,42 @@
+[
+  {
+    "question": "Who is the best?",
+    "options": [
+      {
+        "id": 1,
+        "answer": "me"
+      },
+      {
+        "id": 2,
+        "answer": "you"
+      },
+      {
+        "id": 3,
+        "answer": "he"
+      },
+      {
+        "id": 4,
+        "answer": "she"
+      }
+    ],
+    "correct": 2
+  },
+  {
+    "question": "Which color is red?",
+    "options": [
+      {
+        "id": 1,
+        "answer": "red"
+      },
+      {
+        "id": 2,
+        "answer": "blue"
+      },
+      {
+        "id": 3,
+        "answer": "yellow"
+      }
+    ],
+    "correct": 1
+  }
+]
