@@ -4,9 +4,9 @@
         <h2>{{ question }}</h2>
         <ul>
           <li
-          v-for="option in options"
-          @click="$emit('clickAnswer', { answerId: option.id })"
-          >{{ option.answer }}</li>
+          v-for="(answer, index) in options"
+          @click="$emit('clickAnswer', { answerNo: index + 1 })"
+          >{{ answer }}</li>
         </ul>
       </div>
     </Box>

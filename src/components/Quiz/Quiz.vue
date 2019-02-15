@@ -6,7 +6,7 @@
     <Question
       @clickAnswer="handleClickAnswer"
       :question="currentQuestion.question"
-      :options="currentQuestion.options"
+      :options="currentQuestion.answers"
       :key="currentQuestion.question"
     />
     <div v-if="isEnded">
@@ -79,19 +79,20 @@ export default {
         : Promise.reject();
     },
 
-    updateScore(answerId, currentQuestionIndex) {
-      if (this.questions[currentQuestionIndex].correct === answerId) {
+    updateScore(isCorrect) {
+      if (isCorrect) {
         this.score = this.score + 1;
       }
     },
 
-    handleClickAnswer({ answerId }) {
-      const currentQuestionIndex = this.currentQuestionIndex;
+    handleClickAnswer({ answerNo }) {
+      const currentItem = this.questions[this.currentQuestionIndex];
+      currentItem.checkAnswer(answerNo);
 
       this.hasNextQuestion()
         .then(this.setNextQuestion)
         .catch(this.changeStatus.bind(null, status.ENDED))
-        .finally(this.updateScore.bind(null, answerId, currentQuestionIndex))
+        .finally(this.updateScore.bind(null, currentItem.isAnswerCorrect))
     },
   }
 }

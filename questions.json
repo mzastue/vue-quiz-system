@@ -1,42 +1,23 @@
 [
   {
     "question": "Who is the best?",
-    "options": [
-      {
-        "id": 1,
-        "answer": "me"
-      },
-      {
-        "id": 2,
-        "answer": "you"
-      },
-      {
-        "id": 3,
-        "answer": "he"
-      },
-      {
-        "id": 4,
-        "answer": "she"
-      }
+    "answers": [
+      "me",
+      "you",
+      "he",
+      "she"
     ],
-    "correct": 2
+    "correct": 2,
+    "reference": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
   },
   {
     "question": "Which color is red?",
-    "options": [
-      {
-        "id": 1,
-        "answer": "red"
-      },
-      {
-        "id": 2,
-        "answer": "blue"
-      },
-      {
-        "id": 3,
-        "answer": "yellow"
-      }
+    "answers": [
+      "red",
+      "blue",
+      "yellow"
     ],
-    "correct": 1
+    "correct": 1,
+    "reference": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
   }
 ]

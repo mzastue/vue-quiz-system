@@ -1,14 +1,15 @@
 <template>
   <div id="app" class="container container--md">
     <Quiz
-      :questions="questions"
+      :questions="items"
     />
   </div>
 </template>
 
 <script>
-import questions from './../questions.json';
+import rawQuestions from './../questions.json';
 import Quiz from "./components/Quiz/Quiz.vue";
+import Item from './models/Item';
 
 export default {
   name: "app",
@@ -19,9 +20,24 @@ export default {
 
   data() {
     return {
-      questions,
+      items: this.createItems(),
     }
   },
+
+  methods: {
+    createItems () {
+      return rawQuestions
+        .map(rawQuestion => {
+          return new Item(
+            rawQuestion.question,
+            rawQuestion.answers,
+            rawQuestion.correct,
+            rawQuestion.reference
+          );
+        });
+      ;
+    },
+  }
 };
 </script>
 
