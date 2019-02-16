@@ -9,3 +9,7 @@ $breakpoints: (
 @mixin breakpoint($breakpoint) {
   @media only screen and (min-width: map-get($map: $breakpoints, $key: $breakpoint)) { @content; }
 }
+
+@mixin mobile() {
+  @media only screen and (max-width: map-get($map: $breakpoints, $key: sm)) { @content; }
+}

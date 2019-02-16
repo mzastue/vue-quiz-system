@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container container--md">
+  <div id="app">
     <Quiz
       :questions="items"
     />

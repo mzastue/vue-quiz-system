@@ -1,25 +1,33 @@
 <template>
-  <div id="quiz">
-    <h1>Welcome</h1>
-    <WithSteps v-if="config.showSteps" :current="currentQuestionIndex + 1" :total="questions.length" />
-    <WithScore v-if="config.showScore" :score="score" />
-    <Question
-      @clickAnswer="handleClickAnswer"
-      :question="currentQuestion.question"
-      :options="currentQuestion.answers"
-      :key="currentQuestion.question"
-    />
-    <div v-if="isEnded">
-      Ended. Score: {{ score }}
-    </div>
-  </div>
+  <section id="quiz" class="container container--md">
+
+    <header class="top-bar">
+      <TopBarItem name="SCORE" :value="score | pad" />
+
+      <TopBarItem name="ROUND" :value="round" align="center" />
+
+      <TopBarItem name="TIME" value="121" align="right" />
+    </header>
+
+    <main class="nes-container">
+      <h1>QUIZ</h1>
+      <Question v-model="currentQuestion.question" />
+      <Answers
+        @clickAnswer="handleClickAnswer"
+        v-model="currentQuestion.answers"
+      />
+    </main>
+
+    <footer>
+      Footer
+    </footer>
+  </section>
 </template>
 
 <script>
-import config from './config';
-import Question from './Question/Question.vue';
-import WithScore from './WithScore/WithScore.vue';
-import WithSteps from './WithSteps/WithSteps.vue';
+import { TopBarItem } from '../NES';
+import Question from './Question';
+import Answers from './Answers';
 
 const status = {
   NOT_STARTED: 0,
@@ -32,8 +40,18 @@ export default {
 
   components: {
     Question,
-    WithScore,
-    WithSteps,
+    Answers,
+    TopBarItem,
+  },
+
+  filters: {
+    pad (value, size = 3) {
+      let formatted = value.toString();
+      while (formatted.length < size) {
+        formatted = "0" + formatted;
+      }
+      return formatted.toString();
+    }
   },
 
   props: {
@@ -46,7 +64,7 @@ export default {
 
   data() {
     return {
-      config,
+      // config,
       score: 0,
       currentQuestionIndex: 0,
       status: status.NOT_STARTED,
@@ -60,6 +78,13 @@ export default {
 
     isEnded() {
       return this.status === status.ENDED;
+    },
+
+    round() {
+      const currentRound = this.currentQuestionIndex + 1;
+      const totalRounds = this.questions.length;
+
+      return `${currentRound} / ${totalRounds}`;
     },
   },
 
@@ -98,5 +123,4 @@ export default {
 }
 </script>
 
-<style lang="css">
-</style>
+<style lang="scss" src="./quiz.scss" />

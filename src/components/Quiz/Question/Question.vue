@@ -1,32 +1,24 @@
 <template>
-    <div slot="text" class="question">
-      <h2>{{ question }}</h2>
-      <ul>
-        <li
-          v-for="(answer, index) in options"
-          @click="$emit('clickAnswer', { answerNo: index + 1 })"
-        >{{ answer }}</li>
-      </ul>
-    </div>
+  <Box title="Question">
+    {{ value }}
+  </Box>
 </template>
 
 <script>
-export default {
-  props: {
-    question: {
-      type: String,
-      default: 'No question asked',
-      required: true,
-    },
+import { Box } from '../../NES';
 
-    options: {
-      type: Array,
-      default: () => [{}],
+console.log(Box);
+
+export default {
+  components: {
+    Box,
+  },
+
+  props: {
+    value: {
+      type: String,
       required: true,
     }
   }
 }
 </script>
-
-<style lang="css">
-</style>
