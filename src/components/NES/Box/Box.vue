@@ -1,6 +1,6 @@
 <template>
   <div
-    class="nes-container"
+    class="nes-container box"
     :class="{'with-title': title }"
   >
     <h1 v-if="title" class="title">{{ title }}</h1>
@@ -20,3 +20,5 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss" src="./box.scss" />

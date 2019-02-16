@@ -15,20 +15,22 @@
     grid-template-rows: auto;
   }
 
-  header.top-bar {
+  header {
     grid-area: header;
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
   }
 
   main {
     grid-area: main;
-    align-self: center;
+    align-self: start;
   }
 
   footer {
     grid-area: footer;
     align-self: end;
     text-align: center;
+    margin-bottom: 20px;
   }
 }

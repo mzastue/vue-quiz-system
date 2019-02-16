@@ -19,7 +19,7 @@
     </main>
 
     <footer>
-      Footer
+      <QuizFooter />
     </footer>
   </section>
 </template>
@@ -28,6 +28,7 @@
 import { TopBarItem } from '../NES';
 import Question from './Question';
 import Answers from './Answers';
+import QuizFooter from './Footer'
 
 const status = {
   NOT_STARTED: 0,
@@ -42,6 +43,7 @@ export default {
     Question,
     Answers,
     TopBarItem,
+    QuizFooter,
   },
 
   filters: {
