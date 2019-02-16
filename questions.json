@@ -8,7 +8,7 @@
       "she"
     ],
     "correct": 2,
-    "reference": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    "references": ["https://www.youtube.com/watch?v=dQw4w9WgXcQ"]
   },
   {
     "question": "Which color is red?",
@@ -18,6 +18,6 @@
       "yellow"
     ],
     "correct": 1,
-    "reference": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    "references": ["https://www.youtube.com/watch?v=dQw4w9WgXcQ"]
   }
 ]
