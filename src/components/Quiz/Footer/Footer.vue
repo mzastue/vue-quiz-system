@@ -1,6 +1,6 @@
 <template>
   <div>
-    Made with <i class="nes-icon heart is-small"></i> with VueJS | {{ date }}
+    Made with <i class="nes-icon heart is-small"></i> and VueJS | {{ date }}
   </div>
 </template>
 

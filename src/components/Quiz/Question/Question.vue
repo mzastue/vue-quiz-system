@@ -10,6 +10,8 @@ import { Box } from '../../NES';
 console.log(Box);
 
 export default {
+  name: 'QuizQuestion',
+
   components: {
     Box,
   },
@@ -19,6 +21,14 @@ export default {
       type: String,
       required: true,
     }
+  },
+
+  mounted() {
+    this.$emit('rendered');
+  },
+
+  updated() {
+    this.$emit('rendered');
   }
 }
 </script>
