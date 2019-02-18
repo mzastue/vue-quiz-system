@@ -8,11 +8,11 @@ class Item {
     question = undefined,
     answers = [],
     correct = undefined,
-    reference = undefined
+    explanations = [],
   ) {
     this.question = question;
     this.answers = answers;
-    this.reference = reference;
+    this.explanations = explanations;
     this.correct = correct;
     this.wasAnswered = false;
     this.isAnswerCorrect = false;

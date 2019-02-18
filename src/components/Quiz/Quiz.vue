@@ -7,7 +7,7 @@
 
         <TopBarItem name="ROUND" :value="round" align="center" />
 
-        <TopBarItem name="TIME" value="121" align="right" />
+        <TopBarItem name="TIME" :value="timeAmontValue.toString() | pad" align="right" />
       </div>
 
       <QuizTimer v-if="config.timeLimit !== false"
@@ -80,6 +80,7 @@ export default {
     return {
       config,
       score: 0,
+      timeAmontValue: 0,
       currentQuestionIndex: 0,
       status: status.NOT_STARTED,
       timerEvents: {},
@@ -93,6 +94,10 @@ export default {
 
     isEnded() {
       return this.status === status.ENDED;
+    },
+
+    isStarted() {
+      return this.status === status.STARTED;
     },
 
     round() {
