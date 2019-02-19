@@ -1,0 +1,21 @@
+.editor {
+  grid-area: editor;
+
+  .question {
+    margin-bottom: 20px;
+
+    .controls {
+      background: #777;
+    }
+  }
+
+  .answers {
+    margin-top: 20px;
+  }
+
+  .controls {
+    background: #444;
+    padding: 10px;
+    margin-top: 40px;
+  }
+}

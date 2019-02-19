@@ -1,0 +1,9 @@
+.sidebar {
+  grid-area: sidebar;
+
+  &--questions-list {
+    li {
+      margin-bottom: 20px;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+
+main {
+  display: grid;
+  grid-template-areas:
+    "sidebar editor"
+  ;
+  grid-template-columns: auto 70%;
+  grid-gap: 15px;
+}

@@ -1,6 +1,5 @@
 <template>
   <section id="quiz" class="container container--md">
-
     <header>
       <div class="top-bar">
         <TopBarItem name="SCORE" :value="score | pad" />

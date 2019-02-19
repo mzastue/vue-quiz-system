@@ -1,5 +1,6 @@
 <template>
   <LayoutDefault>
+    <DefaultNavigation/>
     <div class="nes-container quiz--not-started">
       <div class="message -left">
         <i class="nes-bcrikko"></i>
@@ -22,10 +23,12 @@
 
 <script>
 import LayoutDefault from '../../layout/Default';
+import DefaultNavigation from '../../src/components/Navigation';
 
 export default {
   components: {
     LayoutDefault,
+    DefaultNavigation,
   }
 }
 </script>

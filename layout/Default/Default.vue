@@ -1,17 +1,24 @@
 <template>
-  <div class="container container--md">
-    <DefaultNavigation />
+  <div
+    class="container"
+    :class="{
+      'container--xxl': fluid,
+      'container--md': !fluid
+    }"
+  >
     <slot></slot>
   </div>
 </template>
 
 <script>
-import DefaultNavigation from './Navigation';
 
 export default {
-  components: {
-    DefaultNavigation,
-  },
+  props: {
+    fluid: {
+      type: Boolean,
+      default: false,
+    },
+  }
 }
 </script>
 

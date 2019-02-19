@@ -13,7 +13,7 @@ export default {
    * Is time limit enabled for answer to question
    * true|false
    */
-  timeLimit: false,
+  timeLimit: true,
   /*
    * Time limit for answer [seconds]
    */
