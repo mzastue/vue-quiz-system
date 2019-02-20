@@ -93,8 +93,7 @@ export default {
     handleSaveQuestions() {
       const notEmptyAnswerFilter = answer => answer.text.length;
 
-      const result = this.questions.map(question => {
-        debugger;
+      const questions = this.questions.map(question => {
         const answers = question.answers.filter(notEmptyAnswerFilter);
         return {
           ...question,
@@ -102,7 +101,7 @@ export default {
         }
       });
 
-      console.log(result);
+      this.$emit('save', { questions })
     },
   }
 }

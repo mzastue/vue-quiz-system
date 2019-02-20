@@ -3,7 +3,7 @@
     <main>
       <CreatorSidebar :questions="questions" />
 
-      <CreatorEditor :questions="questions" />
+      <CreatorEditor :questions="questions" @save="handleSave" />
     </main>
   </LayoutDefault>
 </template>
@@ -36,6 +36,12 @@ export default {
       ],
     };
   },
+
+  methods: {
+    handleSave({ questions }) {
+      this.axios.post('/quiz', { questions });
+    }
+  }
 }
 </script>
 
