@@ -2,7 +2,7 @@
   <div class="sidebar">
     <Box title="Quesions list">
       <ul class="nes-list is-disc sidebar--questions-list" v-if="questions.length">
-        <li v-for="question in questions">{{ question.text }}</li>
+        <li v-for="(question, index) in questions" :key="'question' + index">{{ question.text }}</li>
       </ul>
       <span v-else>Empty</span>
     </Box>

@@ -91,7 +91,18 @@ export default {
     },
 
     handleSaveQuestions() {
-      console.log(this.questions);
+      const notEmptyAnswerFilter = answer => answer.text.length;
+
+      const result = this.questions.map(question => {
+        debugger;
+        const answers = question.answers.filter(notEmptyAnswerFilter);
+        return {
+          ...question,
+          answers,
+        }
+      });
+
+      console.log(result);
     },
   }
 }
