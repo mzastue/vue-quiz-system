@@ -2,13 +2,20 @@
   <div class="editor">
     <Box title="Quiz name">
       <div class="nes-field">
-        <input type="text" id="name_field" class="nes-input">
+        <input
+          type="text"
+          id="name_field"
+          class="nes-input"
+          :class="{'is-error': error.quizName }"
+          :placeholder="error.quizName"
+          v-model="formData.quizName"
+        >
       </div>
     </Box>
 
-    <Box title="Questions">
+    <Box title="Questions" :is-error="Boolean(error.questions)">
       <div class="question nes-container with-title nes-field"
-        v-for="(question, questionIndex) in questions"
+        v-for="(question, questionIndex) in formData.questions"
         :key="'question' + questionIndex"
       >
       <h1 class="title">Question {{ questionIndex + 1}}</h1>
@@ -63,12 +70,23 @@ export default {
   },
 
   props: {
+    quizName: String,
     questions: Array,
+    error: Object,
+  },
+
+  data() {
+    return {
+      formData: {
+        questions: this.questions,
+        quizName: this.quizName,
+      },
+    };
   },
 
   methods: {
     handleAddQuestion() {
-      this.questions.push(this.createEmptyQuestion());
+      this.formData.questions.push(this.createEmptyQuestion());
     },
 
     handleAddAnswer(question) {
@@ -93,7 +111,7 @@ export default {
     handleSaveQuestions() {
       const notEmptyAnswerFilter = answer => answer.text.length;
 
-      const questions = this.questions.map(question => {
+      const questions = this.formData.questions.map(question => {
         const answers = question.answers.filter(notEmptyAnswerFilter);
         return {
           ...question,
@@ -101,7 +119,10 @@ export default {
         }
       });
 
-      this.$emit('save', { questions })
+      this.$emit('save', {
+        quizName: this.formData.quizName,
+        questions,
+      });
     },
   }
 }

@@ -3,7 +3,12 @@
     <main>
       <CreatorSidebar :questions="questions" />
 
-      <CreatorEditor :questions="questions" @save="handleSave" />
+      <CreatorEditor
+        @save="handleSave"
+        :quizName="quizName"
+        :questions="questions"
+        :error="errors"
+      />
     </main>
   </LayoutDefault>
 </template>
@@ -24,6 +29,7 @@ export default {
 
   data() {
     return {
+      quizName: '',
       questions: [
         /*
         {
@@ -34,12 +40,30 @@ export default {
         }
         */
       ],
+      errors: {
+        /*
+          field: message,
+        */
+      },
     };
   },
 
   methods: {
-    handleSave({ questions }) {
-      this.axios.post('/quiz', { questions });
+    handleSave({ questions, quizName }) {
+      this.axios.post('/quiz', {
+        quizName,
+        questions,
+      })
+        .then(res => {
+          this.errors = {};
+        })
+        .catch(error => {
+          this.errors = {};
+          error.response.data.error.forEach(err => {
+            this.errors[err.field] = err.message;
+          });
+        });
+      ;
     }
   }
 }
