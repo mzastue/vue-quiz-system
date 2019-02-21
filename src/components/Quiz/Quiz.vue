@@ -17,7 +17,7 @@
       />
     </header>
 
-    <main class="nes-container">
+    <main class="nes-container" v-if="questions.length > 0">
       <h1>QUIZ</h1>
       <Question @rendered="handleQuestionShowUp" v-model="currentQuestion.question" />
       <Answers
@@ -25,6 +25,9 @@
         v-model="currentQuestion.answers"
       />
     </main>
+    <template v-else>
+      No questions in this quiz yet.
+    </template>
 
     <footer>
       <QuizFooter />
