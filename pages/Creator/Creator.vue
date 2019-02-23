@@ -55,13 +55,17 @@ export default {
   },
 
   methods: {
-    handleSave({ questions }) {
+    handleSave ({ questions }) {
       this.axios.post('/quiz', {
         quizName: this.quizName,
         questions,
       })
         .then(res => {
           this.errors = {};
+          this.$router.replace({
+            name: 'creator-result',
+            params: { editLink: res.data.editLink }
+          });
         })
         .catch(error => {
           this.errors = {};

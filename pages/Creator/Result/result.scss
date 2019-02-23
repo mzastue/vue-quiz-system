@@ -1,0 +1,28 @@
+.container {
+  display: grid;
+  height: 100vh;
+
+  .wrapper {
+    align-self: center;
+    justify-self: center;
+    margin-bottom: 40px;
+
+    .fun {
+      text-align: center;
+    }
+
+    .pre {
+      margin-bottom: 40px;
+    }
+
+    button {
+      a {
+        color: inherit;
+      }
+    }
+
+    h2 {
+      margin-bottom: 40px;
+    }
+  }
+}

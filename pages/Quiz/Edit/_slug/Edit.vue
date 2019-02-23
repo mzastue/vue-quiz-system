@@ -93,7 +93,6 @@ export default {
         newQuestions: this.quizData.newQuestions,
       })
       .then(res => {
-        debugger;
       })
       .catch(err => {
         this.errors = {};
