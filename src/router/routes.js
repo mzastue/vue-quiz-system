@@ -3,6 +3,7 @@ import pages from '../../pages';
 export default [
   {
     path: '/',
+    name: 'home',
     component: pages.Home,
   },
   {
