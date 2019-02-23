@@ -1,6 +1,6 @@
 <template>
   <div class="editor">
-    <Box title="Questions" :is-error="Boolean(error.questions)">
+    <Box title="Questions" :is-error="Boolean(error)">
       <div class="question nes-container with-title nes-field"
         v-for="(question, questionIndex) in formData.questions"
         :key="'question' + questionIndex"
@@ -61,10 +61,7 @@ export default {
       type: Array,
       default: () => [],
     },
-    error: {
-      type: Object,
-      default: () => ({}),
-    },
+    error: String,
   },
 
   data() {

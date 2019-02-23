@@ -1,10 +1,12 @@
 <template>
-  <DetailLayout fluid :isLoading="isLoading" :isError="isError">
-    <main v-if="!isLoading && !isError">
+  <DetailLayout fluid :isLoading="isLoading" :isError="errors.fetchingError">
+    <span class="nes-text is-disabled">Quiz</span>
+    <h1>{{ quizData.quizName }}</h1>
+    <main v-if="!isLoading && !errors.fetchingError">
       <CreatorSidebar :questions="quizData.newQuestions" />
 
       <CreatorWrapper>
-        <Box title="Currently created questions">
+        <Box title="These questions are already created">
           <ul class="nes-list is-circle">
             <li v-for="(oldQuestion, oldQuestionIndex) in quizData.oldQuestions" :key="`old-question-${oldQuestionIndex}`">
               {{ oldQuestion.text }}
@@ -16,6 +18,7 @@
         <QuestionsCreator
           @save="handleSave"
           :questions="quizData.newQuestions"
+          :error="errors.newQuestions"
         />
       </CreatorWrapper>
     </main>
@@ -43,8 +46,8 @@ export default {
 
   data() {
     return {
-      isLoading: false,
-      isError: false,
+      isLoading: true,
+      errors: {},
       quizData: {
         oldQuestions: [],
         newQuestions: [],
@@ -61,12 +64,13 @@ export default {
         return res.data;
       })
       .catch(error => {
-        this.isError = true;
+        this.errors.fetchingError = true;
       })
     ;
 
     this.quizData.quizName = quizData.name;
     this.quizData.oldQuestions = quizData.createdQuestions;
+    this.quizData.quizId = quizData.id;
   },
 
   methods: {
@@ -84,7 +88,19 @@ export default {
     },
 
     handleSave ({ questions }) {
-      console.log(this.quizData.oldQuestions);
+      const quizId = this.quizData.quizId;
+      this.axios.put(`/quiz/${quizId}`, {
+        newQuestions: this.quizData.newQuestions,
+      })
+      .then(res => {
+        debugger;
+      })
+      .catch(err => {
+        this.errors = {};
+        err.response.data.error.forEach(err => {
+          this.errors[err.field] = err.message;
+        });
+      })
     }
   }
 }

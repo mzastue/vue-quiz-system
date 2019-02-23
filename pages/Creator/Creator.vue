@@ -8,7 +8,7 @@
         <QuestionsCreator
           @save="handleSave"
           :questions="questions"
-          :error="errors"
+          :error="errors.questions"
         />
       </CreatorWrapper>
     </main>

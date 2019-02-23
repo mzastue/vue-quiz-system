@@ -7,7 +7,7 @@
       Quiz not found
     </template>
 
-    <slot></slot>
+    <slot v-if="!isLoading && !isError"></slot>
   </DefaultLayout>
 </template>
 
