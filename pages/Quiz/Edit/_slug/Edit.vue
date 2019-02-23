@@ -3,7 +3,7 @@
     <main v-if="!isLoading && !isError">
       <CreatorSidebar :questions="quizData.newQuestions" />
 
-      <QuestionsCreator>
+      <CreatorWrapper>
         <Box title="Currently created questions">
           <ul class="nes-list is-circle">
             <li v-for="(oldQuestion, oldQuestionIndex) in quizData.oldQuestions" :key="`old-question-${oldQuestionIndex}`">
@@ -17,7 +17,7 @@
           @save="handleSave"
           :questions="quizData.newQuestions"
         />
-      </QuestionsCreator>
+      </CreatorWrapper>
     </main>
   </DetailLayout>
 </template>
