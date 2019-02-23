@@ -64,7 +64,10 @@ export default {
           this.errors = {};
           this.$router.replace({
             name: 'creator-result',
-            params: { editLink: res.data.editLink }
+            params: {
+              editLink: res.data.editLink,
+              quizId: res.data.id,
+            },
           });
         })
         .catch(error => {

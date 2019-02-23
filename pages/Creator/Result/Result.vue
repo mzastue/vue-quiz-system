@@ -61,7 +61,7 @@ export default {
   data () {
     return {
       editLink: '',
-      quizId: 'nic-tu-nie-ma',
+      quizId: '',
       linkData: {
         name: 'quiz-edit',
         params: {
@@ -83,6 +83,7 @@ export default {
 
   created () {
     this.editLink = this.$route.params.editLink;
+    this.quizId = this.$route.params.quizId;
   },
 }
 </script>
