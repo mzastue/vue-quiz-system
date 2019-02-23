@@ -11,14 +11,14 @@
         <div class="message -left">
           <i class="nes-bcrikko"></i>
           <div class="nes-balloon from-left">
-            <p>Are you ready to start <span class="nes-text is-primary">{{ quizName }}</span> QUIZ?</p>
+            <p>Are you ready <span class="nes-text is-primary">{{ userName }}</span> to start <span class="nes-text is-primary">{{ quizName }}</span> QUIZ?</p>
           </div>
         </div>
 
         <div class="form">
           <div class="nes-field">
             <label for="name_field">Your name</label>
-            <input type="text" id="name_field" class="nes-input">
+            <input type="text" id="name_field" class="nes-input" v-model="userName">
           </div>
 
           <button type="button" class="nes-btn is-success">Start</button>
@@ -53,6 +53,7 @@ export default {
       // rawQuestions: [],
       items: [],
       quizName: '',
+      userName: '',
     }
   },
 

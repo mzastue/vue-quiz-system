@@ -3,12 +3,14 @@
     <main>
       <CreatorSidebar :questions="questions" />
 
-      <CreatorEditor
-        @save="handleSave"
-        :quizName="quizName"
-        :questions="questions"
-        :error="errors"
-      />
+      <CreatorWrapper>
+        <QuizName v-model="quizName" :error="errors.quizName" />
+        <QuestionsCreator
+          @save="handleSave"
+          :questions="questions"
+          :error="errors"
+        />
+      </CreatorWrapper>
     </main>
   </LayoutDefault>
 </template>
@@ -17,14 +19,18 @@
 import LayoutDefault from '../../layout/Default';
 import Box from '../../src/components/NES/Box';
 import CreatorSidebar from '../../src/components/Creator/Sidebar';
-import CreatorEditor from '../../src/components/Creator/Editor';
+import QuestionsCreator from '../../src/components/Creator/Question';
+import CreatorWrapper from '@/components/Creator';
+import QuizName from '@/components/Creator/Name';
 
 export default {
   components: {
     LayoutDefault,
     Box,
     CreatorSidebar,
-    CreatorEditor,
+    QuestionsCreator,
+    CreatorWrapper,
+    QuizName,
   },
 
   data() {
@@ -49,9 +55,9 @@ export default {
   },
 
   methods: {
-    handleSave({ questions, quizName }) {
+    handleSave({ questions }) {
       this.axios.post('/quiz', {
-        quizName,
+        quizName: this.quizName,
         questions,
       })
         .then(res => {

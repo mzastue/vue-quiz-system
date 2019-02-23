@@ -1,18 +1,5 @@
 <template>
   <div class="editor">
-    <Box title="Quiz name">
-      <div class="nes-field">
-        <input
-          type="text"
-          id="name_field"
-          class="nes-input"
-          :class="{'is-error': error.quizName }"
-          :placeholder="error.quizName"
-          v-model="formData.quizName"
-        >
-      </div>
-    </Box>
-
     <Box title="Questions" :is-error="Boolean(error.questions)">
       <div class="question nes-container with-title nes-field"
         v-for="(question, questionIndex) in formData.questions"
@@ -70,16 +57,20 @@ export default {
   },
 
   props: {
-    quizName: String,
-    questions: Array,
-    error: Object,
+    questions: {
+      type: Array,
+      default: () => [],
+    },
+    error: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 
   data() {
     return {
       formData: {
         questions: this.questions,
-        quizName: this.quizName,
       },
     };
   },
@@ -120,7 +111,6 @@ export default {
       });
 
       this.$emit('save', {
-        quizName: this.formData.quizName,
         questions,
       });
     },
@@ -128,4 +118,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped src="./editor.scss" />
+<style lang="scss" scoped src="./question.scss" />
