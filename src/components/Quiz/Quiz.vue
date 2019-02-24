@@ -2,7 +2,7 @@
   <section id="quiz" class="container container--md">
     <header>
       <div class="top-bar">
-        <TopBarItem name="SCORE" :value="score | pad" />
+        <TopBarItem :name="scoreLabel" :value="score | pad" icon="coin" />
 
         <TopBarItem name="ROUND" :value="round" align="center" />
 
@@ -76,10 +76,16 @@ export default {
       default: () => [],
       required: true,
     },
+
+    playerName: {
+      type: String,
+      requied: false,
+    },
   },
 
   data() {
     return {
+      scoreLabel: (this.playerName || 'score').toUpperCase(),
       config,
       score: 0,
       timeAmontValue: 0,
