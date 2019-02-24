@@ -6,7 +6,7 @@
     <template v-if="isError">
       Quiz not found
     </template>
-    <div class="container container--md" v-if="!isLoading && !isError">
+    <div class="container container--md" v-if="!isLoading && !isError && !isReady">
       <div class="nes-container quiz--not-started">
         <div class="message -left">
           <i class="nes-bcrikko"></i>
@@ -21,18 +21,22 @@
             <input type="text" id="name_field" class="nes-input" v-model="userName">
           </div>
 
-          <button type="button" class="nes-btn is-success">Start</button>
+          <button
+            @click="handleStart"
+            type="button"
+            class="nes-btn is-success"
+          >Start</button>
         </div>
       </div>
     </div>
+    <Quiz
+      v-if="isReady"
+      :questions="items"
+    />
   </LayoutDefault>
-  <!-- <Quiz
-    :questions="items"
-  /> -->
 </template>
 
 <script>
-// import rawQuestions from '../../questions.json';
 import App from '../../../src/App.vue';
 import Quiz from "../../../src/components/Quiz/Quiz.vue";
 import Item from '../../../src/models/Item';
@@ -57,10 +61,10 @@ export default {
     return {
       isLoading: false,
       isError: false,
-      // rawQuestions: [],
       items: [],
       quizName: '',
       userName: '',
+      isReady: false,
     }
   },
 
@@ -84,7 +88,6 @@ export default {
       this.quizName = quizData.name;
       this.items = this.createItems(quizData.questions);
     }
-
   },
 
   methods: {
@@ -92,13 +95,17 @@ export default {
       return rawQuestions
         .map(rawQuestion => {
           return new Item(
-            rawQuestion.question,
+            rawQuestion.text,
             rawQuestion.answers,
             rawQuestion.correct,
             rawQuestion.explanations
           );
         });
       ;
+    },
+
+    handleStart () {
+      this.isReady = true;
     },
   }
 }

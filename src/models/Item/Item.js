@@ -1,8 +1,3 @@
-import {
-  Question,
-  createAnswers,
-} from '../Item';
-
 class Item {
   constructor (
     question = undefined,
@@ -18,9 +13,9 @@ class Item {
     this.isAnswerCorrect = false;
   }
 
-  checkAnswer (answerNo) {
-    if (!this.wasTouched) {
-      this.isAnswerCorrect = this.correct === answerNo;
+  checkAnswer (answer) {
+    if (!this.wasAnswered) {
+      this.isAnswerCorrect = answer.isCorrect || false;
       this.wasAnswered = true;
     }
   }

@@ -132,18 +132,20 @@ export default {
       }
     },
 
-    handleClickAnswer({ answerNo } = {}) {
+    handleClickAnswer({ answerNo, answer = {}} = {}) {
       const currentItem = this.questions[this.currentQuestionIndex];
-      currentItem.checkAnswer(answerNo);
+      if (!currentItem.wasAnswered) {
+        currentItem.checkAnswer(answer);
 
-      if (this.config.timeLimit) {
-        this.timerEvents.reset();
+        if (this.config.timeLimit) {
+          this.timerEvents.reset();
+        }
+
+        this.hasNextQuestion()
+          .then(this.setNextQuestion)
+          .catch(this.changeStatus.bind(null, status.ENDED))
+          .finally(this.updateScore.bind(null, currentItem.isAnswerCorrect))
       }
-
-      this.hasNextQuestion()
-        .then(this.setNextQuestion)
-        .catch(this.changeStatus.bind(null, status.ENDED))
-        .finally(this.updateScore.bind(null, currentItem.isAnswerCorrect))
     },
 
     setTimerEvents(events) {
