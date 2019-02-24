@@ -80,8 +80,11 @@ export default {
       ;
     }
 
-    this.quizName = quizData.name;
-    this.items = this.createItems(quizData.questions);
+    if (quizData) {
+      this.quizName = quizData.name;
+      this.items = this.createItems(quizData.questions);
+    }
+
   },
 
   methods: {

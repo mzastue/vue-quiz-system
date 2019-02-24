@@ -66,15 +66,15 @@ export default {
   async created() {
     let quizData = this.quiz;
 
-    if (quizData.id) {
+    if (!quizData.id) {
       const quizId = this.$route.params.slug;
       quizData = await this.axios.get(`/quiz/${quizId}/edit`)
-        .then(res => {
-          this.isLoading = false;
-          return res.data;
-        })
+        .then(res => res.data)
         .catch(error => {
           this.errors.fetchingError = true;
+        })
+        .finally(() => {
+          this.isLoading = false;
         })
       ;
     } else {
@@ -82,9 +82,11 @@ export default {
       this.errors.fetchingError = false;
     }
 
-    this.quizData.quizName = quizData.name;
-    this.quizData.oldQuestions = quizData.createdQuestions;
-    this.quizData.quizId = quizData.id;
+    if (quizData) {
+      this.quizData.quizName = quizData.name;
+      this.quizData.oldQuestions = quizData.createdQuestions;
+      this.quizData.quizId = quizData.id;
+    }
   },
 
   methods: {
