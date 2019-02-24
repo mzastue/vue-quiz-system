@@ -3,7 +3,8 @@
     class="container"
     :class="{
       'container--xxl': fluid,
-      'container--md': !fluid
+      'container--md': md,
+      'container--sm': sm,
     }"
   >
     <slot></slot>
@@ -18,6 +19,16 @@ export default {
       type: Boolean,
       default: false,
     },
+
+    md: {
+      type: Boolean,
+      default: false,
+    },
+
+    sm: {
+      type: Boolean,
+      default: false,
+    }
   }
 }
 </script>

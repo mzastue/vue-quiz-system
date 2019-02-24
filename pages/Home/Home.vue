@@ -1,21 +1,11 @@
 <template>
-  <LayoutDefault>
-    <DefaultNavigation/>
-    <div class="nes-container quiz--not-started">
-      <div class="message -left">
-        <i class="nes-bcrikko"></i>
-        <div class="nes-balloon from-left">
-          <p>Are you ready to start a QUIZ?</p>
+  <LayoutDefault sm>
+    <div id="home" class="nes-container">
+      <h1>Hello</h1>
+      <div class="nav">
+        <div class="nav--item" v-for="(navItem, navIndex) in nav" :key="`nav-item-${navIndex}`">
+          <span class="nes-text" @click="handleClick(navItem)">{{ navItem.label }}</span>
         </div>
-      </div>
-
-      <div class="form">
-        <div class="nes-field">
-          <label for="name_field">Your name</label>
-          <input type="text" id="name_field" class="nes-input">
-        </div>
-
-        <button type="button" class="nes-btn is-success">Start</button>
       </div>
     </div>
   </LayoutDefault>
@@ -29,6 +19,31 @@ export default {
   components: {
     LayoutDefault,
     DefaultNavigation,
+  },
+
+  data () {
+    return {
+      nav: [
+        {
+          label: 'Start new game',
+          hrefName: 'quiz-pre',
+        },
+        {
+          label: 'Create quiz',
+          hrefName: 'quiz-create',
+        },
+        {
+          label: 'Edit quiz',
+          hrefName: 'quiz-edit',
+        },
+      ],
+    }
+  },
+
+  methods: {
+    handleClick (navItem) {
+      this.$router.push({ name: navItem.hrefName });
+    }
   }
 }
 </script>

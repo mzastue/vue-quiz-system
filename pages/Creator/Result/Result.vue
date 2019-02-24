@@ -41,7 +41,7 @@
           <button type="button" class="nes-btn is-primary" @click="$router.replace({ name: 'home' })">
             Home
           </button>
-          <button type="button" class="nes-btn is-primary" @click="$router.replace({ name: 'create-quiz' })">
+          <button type="button" class="nes-btn is-primary" @click="$router.replace({ name: 'quiz-create' })">
             Create another QUIZ
           </button>
         </div>

@@ -7,17 +7,30 @@ export default [
     component: pages.Home,
   },
   {
+    path: '/quiz',
+    name: 'quiz-pre',
+    component: pages.QuizPre,
+  },
+  {
+    path: '/quiz/edit',
+    name: 'quiz-pre-edit',
+    component: pages.QuizPreEdit,
+  },
+  {
     path: '/quiz/:slug',
+    name: 'quiz-start',
     component: pages.Quiz,
+    props: true,
   },
   {
     path: '/quiz/edit/:slug',
     name: 'quiz-edit',
     component: pages.QuizEdit,
+    props: true,
   },
   {
     path: '/creator',
-    name: 'create-quiz',
+    name: 'quiz-create',
     component: pages.Creator,
   },
   {

@@ -46,6 +46,13 @@ export default {
     LayoutDefault,
   },
 
+  props: {
+    quizData: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+
   data() {
     return {
       isLoading: false,
@@ -58,20 +65,23 @@ export default {
   },
 
   async created() {
-    const quizId = this.$route.params.slug;
-    const quizData = await this.axios.get(`/quiz/${quizId}`)
-      .then(res => {
-        this.isLoading = false;
-        return res.data;
-      })
-      .catch(error => {
-        this.isError = true;
-      })
-    ;
+    let quizData = this.quizData;
+
+    if (!quizData.id) {
+      const quizId = this.$route.params.slug;
+      quizData = await this.axios.get(`/quiz/${quizId}`)
+        .then(res => {
+          this.isLoading = false;
+          return res.data;
+        })
+        .catch(error => {
+          this.isError = true;
+        })
+      ;
+    }
 
     this.quizName = quizData.name;
     this.items = this.createItems(quizData.questions);
-    console.log(quizData);
   },
 
   methods: {

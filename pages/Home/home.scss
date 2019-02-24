@@ -1,27 +1,25 @@
-.quiz--not-started {
-  align-self: center;
+.container {
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  // align-items: center;
 
-  .message {
-    margin-bottom: 40px;
-
-    i {
-      bottom: -60px;
-    }
-  }
-
-  .form {
+  #home {
     align-self: center;
-    width: 60%;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
 
-    div {
-      margin-bottom: 40px;
-    }
+    .nav {
+      display: flex;
+      flex-direction: column;
 
-    button {
-      width: 100%;
+      &--item {
+        span {
+          &::before {
+            top: initial;
+            left: -34px;
+          }
+        }
+      }
     }
   }
 }

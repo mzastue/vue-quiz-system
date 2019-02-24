@@ -44,6 +44,13 @@ export default {
     CreatorWrapper,
   },
 
+  props: {
+    quiz: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+
   data() {
     return {
       isLoading: true,
@@ -57,16 +64,23 @@ export default {
   },
 
   async created() {
-    const quizId = this.$route.params.slug;
-    const quizData = await this.axios.get(`/quiz/${quizId}/edit`)
-      .then(res => {
-        this.isLoading = false;
-        return res.data;
-      })
-      .catch(error => {
-        this.errors.fetchingError = true;
-      })
-    ;
+    let quizData = this.quiz;
+
+    if (quizData.id) {
+      const quizId = this.$route.params.slug;
+      quizData = await this.axios.get(`/quiz/${quizId}/edit`)
+        .then(res => {
+          this.isLoading = false;
+          return res.data;
+        })
+        .catch(error => {
+          this.errors.fetchingError = true;
+        })
+      ;
+    } else {
+      this.isLoading = false;
+      this.errors.fetchingError = false;
+    }
 
     this.quizData.quizName = quizData.name;
     this.quizData.oldQuestions = quizData.createdQuestions;
