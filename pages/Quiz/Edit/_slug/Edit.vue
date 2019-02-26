@@ -106,7 +106,7 @@ export default {
     handleSave ({ questions }) {
       const quizId = this.quizData.quizId;
       this.axios.put(`/quiz/${quizId}`, {
-        newQuestions: this.quizData.newQuestions,
+        newQuestions: questions,
       })
       .then(res => {
       })

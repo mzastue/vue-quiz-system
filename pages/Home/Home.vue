@@ -1,7 +1,7 @@
 <template>
   <LayoutDefault sm>
     <div id="home" class="nes-container">
-      <h1>Hello</h1>
+      <h1>NES Quiz</h1>
       <div class="nav">
         <div class="nav--item" v-for="(navItem, navIndex) in nav" :key="`nav-item-${navIndex}`">
           <span class="nes-text" @click="handleClick(navItem)">{{ navItem.label }}</span>
@@ -34,7 +34,7 @@ export default {
         },
         {
           label: 'Edit quiz',
-          hrefName: 'quiz-edit',
+          hrefName: 'quiz-pre-edit',
         },
       ],
     }
