@@ -1,0 +1,44 @@
+.container {
+  display: grid;
+  height: 100vh;
+
+  .wrapper {
+    align-self: center;
+    justify-self: center;
+    margin-bottom: 40px;
+
+    .fun {
+      text-align: center;
+    }
+
+    .ops {
+      display: flex;
+      flex-direction: column;
+
+      i, a {
+        margin: 20px 0;
+        align-self: center;
+      }
+    }
+
+    .pre {
+      margin-bottom: 40px;
+      word-break: break-word;
+    }
+
+    .nav {
+      button {
+        margin: 0 20px 20px 0;
+
+        a {
+          color: inherit;
+        }
+      }
+    }
+
+
+    h2 {
+      margin-bottom: 40px;
+    }
+  }
+}

@@ -1,7 +1,10 @@
 <template>
   <div class="top-bar-item" :class="'align-' + align">
     <div>{{ name }}</div>
-    <div>{{ value }}</div>
+    <div>
+      <i v-if="icon" class="nes-icon is-small" :class="icon"></i>
+      {{ value }}
+    </div>
   </div>
 </template>
 
@@ -22,6 +25,11 @@ export default {
     value: {
       type: String,
       required: true,
+    },
+
+    icon: {
+      type: String,
+      required: false,
     },
   }
 }

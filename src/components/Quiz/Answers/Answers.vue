@@ -3,8 +3,13 @@
     <ul>
       <li
         v-for="(answer, index) in value"
-        @click="$emit('clickAnswer', { answerNo: index + 1 })"
-      ><button type="button" class="nes-btn" :class="'is-' + buttonClass(index)">{{ answer }}</button></li>
+        :key="`answer-${index}`"
+        @click="$emit('clickAnswer', { answerNo: index + 1, answer })"
+      ><button
+        type="button"
+        class="nes-btn"
+        :class="'is-' + buttonClass(index)"
+      >{{ answer.text }}</button></li>
     </ul>
   </Box>
 </template>

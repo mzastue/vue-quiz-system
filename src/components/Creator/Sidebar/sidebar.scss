@@ -1,0 +1,10 @@
+.sidebar {
+  grid-area: sidebar;
+
+  &--questions-list {
+    word-break: break-word;
+    li {
+      margin-bottom: 20px;
+    }
+  }
+}

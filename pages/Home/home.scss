@@ -1,0 +1,25 @@
+.container {
+  height: 100vh;
+  display: flex;
+
+  #home {
+    align-self: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+
+      &--item {
+        span {
+          &::before {
+            top: initial;
+            left: -34px;
+          }
+        }
+      }
+    }
+  }
+}

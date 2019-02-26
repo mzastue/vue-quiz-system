@@ -1,13 +1,12 @@
 <template>
   <section id="quiz" class="container container--md">
-
     <header>
       <div class="top-bar">
-        <TopBarItem name="SCORE" :value="score | pad" />
+        <TopBarItem :name="scoreLabel" :value="score | pad" icon="coin" />
 
         <TopBarItem name="ROUND" :value="round" align="center" />
 
-        <TopBarItem name="TIME" value="121" align="right" />
+        <TopBarItem name="TIME" :value="timeAmontValue.toString() | pad" align="right" />
       </div>
 
       <QuizTimer v-if="config.timeLimit !== false"
@@ -18,7 +17,7 @@
       />
     </header>
 
-    <main class="nes-container">
+    <main class="nes-container" v-if="questions.length > 0">
       <h1>QUIZ</h1>
       <Question @rendered="handleQuestionShowUp" v-model="currentQuestion.question" />
       <Answers
@@ -26,6 +25,9 @@
         v-model="currentQuestion.answers"
       />
     </main>
+    <template v-else>
+      No questions in this quiz yet.
+    </template>
 
     <footer>
       <QuizFooter />
@@ -74,12 +76,19 @@ export default {
       default: () => [],
       required: true,
     },
+
+    playerName: {
+      type: String,
+      requied: false,
+    },
   },
 
   data() {
     return {
+      scoreLabel: (this.playerName || 'score').toUpperCase(),
       config,
       score: 0,
+      timeAmontValue: 0,
       currentQuestionIndex: 0,
       status: status.NOT_STARTED,
       timerEvents: {},
@@ -93,6 +102,10 @@ export default {
 
     isEnded() {
       return this.status === status.ENDED;
+    },
+
+    isStarted() {
+      return this.status === status.STARTED;
     },
 
     round() {
@@ -125,18 +138,20 @@ export default {
       }
     },
 
-    handleClickAnswer({ answerNo } = {}) {
+    handleClickAnswer({ answerNo, answer = {}} = {}) {
       const currentItem = this.questions[this.currentQuestionIndex];
-      currentItem.checkAnswer(answerNo);
+      if (!currentItem.wasAnswered) {
+        currentItem.checkAnswer(answer);
 
-      if (this.config.timeLimit) {
-        this.timerEvents.reset();
+        if (this.config.timeLimit) {
+          this.timerEvents.reset();
+        }
+
+        this.hasNextQuestion()
+          .then(this.setNextQuestion)
+          .catch(this.changeStatus.bind(null, status.ENDED))
+          .finally(this.updateScore.bind(null, currentItem.isAnswerCorrect))
       }
-
-      this.hasNextQuestion()
-        .then(this.setNextQuestion)
-        .catch(this.changeStatus.bind(null, status.ENDED))
-        .finally(this.updateScore.bind(null, currentItem.isAnswerCorrect))
     },
 
     setTimerEvents(events) {

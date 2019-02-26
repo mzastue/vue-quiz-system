@@ -7,8 +7,6 @@
 <script>
 import { Box } from '../../NES';
 
-console.log(Box);
-
 export default {
   name: 'QuizQuestion',
 

@@ -1,7 +1,10 @@
 <template>
   <div
     class="nes-container box"
-    :class="{'with-title': title }"
+    :class="{
+      'with-title': title,
+      'is-error': isError,
+    }"
   >
     <h1 v-if="title" class="title">{{ title }}</h1>
     <slot></slot>
@@ -16,7 +19,11 @@ export default {
     title: {
       type: String,
       required: false,
-    }
+    },
+    isError: {
+      type: Boolean,
+      default: false,
+    },
   }
 }
 </script>

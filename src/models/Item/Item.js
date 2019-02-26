@@ -1,26 +1,21 @@
-import {
-  Question,
-  createAnswers,
-} from '../Item';
-
 class Item {
   constructor (
     question = undefined,
     answers = [],
     correct = undefined,
-    reference = undefined
+    explanations = [],
   ) {
     this.question = question;
     this.answers = answers;
-    this.reference = reference;
+    this.explanations = explanations;
     this.correct = correct;
     this.wasAnswered = false;
     this.isAnswerCorrect = false;
   }
 
-  checkAnswer (answerNo) {
-    if (!this.wasTouched) {
-      this.isAnswerCorrect = this.correct === answerNo;
+  checkAnswer (answer) {
+    if (!this.wasAnswered) {
+      this.isAnswerCorrect = answer.isCorrect || false;
       this.wasAnswered = true;
     }
   }
