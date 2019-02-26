@@ -5,6 +5,7 @@
 
       <CreatorWrapper>
         <QuizName v-model="quizName" :error="errors.quizName" />
+        <QuizConfig :config="quizConfig" />
         <QuestionsCreator
           @save="handleSave"
           :questions="questions"
@@ -22,6 +23,7 @@ import CreatorSidebar from '../../src/components/Creator/Sidebar';
 import QuestionsCreator from '../../src/components/Creator/Question';
 import CreatorWrapper from '@/components/Creator';
 import QuizName from '@/components/Creator/Name';
+import QuizConfig from '@/components/Creator/Config';
 
 export default {
   components: {
@@ -31,11 +33,16 @@ export default {
     QuestionsCreator,
     CreatorWrapper,
     QuizName,
+    QuizConfig,
   },
 
   data() {
     return {
       quizName: '',
+      quizConfig: {
+        questionTimeLimitEnabled: false,
+        questionTimeLimitValue: 15,
+      },
       questions: [
         /*
         {
@@ -59,6 +66,7 @@ export default {
       this.axios.post('/quiz', {
         quizName: this.quizName,
         questions,
+        config: this.quizConfig,
       })
         .then(res => {
           this.errors = {};

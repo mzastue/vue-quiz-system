@@ -2,7 +2,7 @@
   <div class="editor">
     <Box title="Questions" :is-error="Boolean(error)">
       <div class="question nes-container with-title nes-field"
-        v-for="(question, questionIndex) in formData.questions"
+        v-for="(question, questionIndex) in questions"
         :key="'question' + questionIndex"
       >
       <h1 class="title">Question {{ questionIndex + 1}}</h1>
@@ -97,9 +97,6 @@ export default {
 
   data() {
     return {
-      formData: {
-        questions: this.questions,
-      },
       saveButton: {
         ...saveButton,
         status: saveButton.statuses.validate,
@@ -113,7 +110,7 @@ export default {
   },
 
   watch: {
-    'formData.questions': {
+    'questions': {
       handler(newValue) {
         if (!this.wasValidated && this.saveButton.status.code !== saveButton.statuses.validate.code) {
           this.saveButton.setStatus(saveButton.statuses.validate);
@@ -132,7 +129,7 @@ export default {
 
   methods: {
     handleAddQuestion() {
-      this.formData.questions.push(this.createEmptyQuestion());
+      this.questions.push(this.createEmptyQuestion());
     },
 
     handleAddAnswer(question) {
@@ -165,7 +162,7 @@ export default {
     },
 
     validateProcess() {
-      this.validateQuestions(this.formData.questions)
+      this.validateQuestions(this.questions)
         .then(({ questionsOK, willBeDeleted }) => {
           willBeDeleted.forEach(toDelete => {
             toDelete.question.status = codes.validationFailed;
@@ -217,7 +214,7 @@ export default {
         return question.text.trim().length && question.answers.length && areAnswersCorrect(question.answers);
       }
 
-      const questions = this.formData.questions
+      const questions = this.questions
         .filter(notValidatedQuestionsFilter)
         .map(question => {
           const answers = question.answers.filter(notEmptyAnswerFilter);

@@ -109,6 +109,8 @@ export default {
         newQuestions: questions,
       })
       .then(res => {
+        this.quizData.oldQuestions.push(...questions.map(quesion => ({ text: quesion.text, answersCount: quesion.answers.length })));
+        this.quizData.newQuestions = [];
       })
       .catch(err => {
         this.errors = {};
@@ -116,7 +118,7 @@ export default {
           this.errors[err.field] = err.message;
         });
       })
-    }
+    },
   }
 }
 </script>
