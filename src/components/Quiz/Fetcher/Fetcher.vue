@@ -6,10 +6,12 @@
       >{{ notification.message }}</span>
     </div>
     <Box :title="title">
-      <div class="nes-field is-inline">
-        <input type="text" id="name_field" class="nes-input" v-model="id">
-        <button class="nes-btn is-primary" @click="handleClick()">Give me a quiz</button>
-      </div>
+      <form action="#">
+        <div class="nes-field is-inline">
+          <input type="text" id="name_field" class="nes-input" v-model="id" autofocus>
+          <button class="nes-btn is-primary" @click.prevent="handleClick()">Give me a quiz</button>
+        </div>
+      </form>
     </Box>
   </div>
 </template>

@@ -7,7 +7,13 @@
       Quiz not found
     </template>
 
-    <slot v-if="!isLoading && !isError"></slot>
+    <div v-if="!isLoading && !isError">
+      <div class="nav">
+        <span class="nes-text"><router-link :to="{ name: 'home' }">&#60; Back home</router-link></span>
+      </div>
+      <slot></slot>
+    </div>
+
   </DefaultLayout>
 </template>
 
@@ -39,4 +45,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .nav {
+    margin-bottom: 20px;
+  }
 </style>

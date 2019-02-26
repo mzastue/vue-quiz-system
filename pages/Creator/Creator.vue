@@ -1,5 +1,5 @@
 <template>
-  <LayoutDefault fluid>
+  <Layout fluid>
     <main>
       <CreatorSidebar :questions="questions" />
 
@@ -13,11 +13,11 @@
         />
       </CreatorWrapper>
     </main>
-  </LayoutDefault>
+  </Layout>
 </template>
 
 <script>
-import LayoutDefault from '../../layout/Default';
+import Layout from '../../layout/Detail';
 import Box from '../../src/components/NES/Box';
 import CreatorSidebar from '../../src/components/Creator/Sidebar';
 import QuestionsCreator from '../../src/components/Creator/Question';
@@ -27,7 +27,7 @@ import QuizConfig from '@/components/Creator/Config';
 
 export default {
   components: {
-    LayoutDefault,
+    Layout,
     Box,
     CreatorSidebar,
     QuestionsCreator,

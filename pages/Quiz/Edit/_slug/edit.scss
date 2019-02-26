@@ -5,4 +5,11 @@ main {
   ;
   grid-template-columns: auto 70%;
   grid-gap: 15px;
+
+  .created-questions {
+    ul {
+      max-height: 200px;
+      overflow: scroll;
+    }
+  }
 }
