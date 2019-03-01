@@ -6,14 +6,14 @@
       <CreatorSidebar :questions="quizData.newQuestions" />
 
       <CreatorWrapper>
-        <Box title="These questions are already created" class="created-questions">
+        <!-- <Box title="These questions are already created" class="created-questions">
           <ul class="nes-list is-circle">
             <li v-for="(oldQuestion, oldQuestionIndex) in quizData.oldQuestions" :key="`old-question-${oldQuestionIndex}`">
               {{ oldQuestion.text }}
               (Answers: {{ oldQuestion.answersCount }})
             </li>
           </ul>
-        </Box>
+        </Box> -->
 
         <QuestionsCreator
           @save="handleSave"
