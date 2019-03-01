@@ -104,8 +104,8 @@ export default {
     },
 
     handleSave ({ questions }) {
-      const quizId = this.quizData.quizId;
-      this.axios.put(`/quiz/${quizId}`, {
+      const quizEditLink = this.$route.params.slug;
+      this.axios.put(`/quiz/${quizEditLink}`, {
         newQuestions: questions,
       })
       .then(res => {
