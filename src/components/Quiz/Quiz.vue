@@ -149,7 +149,7 @@ export default {
 
         this.hasNextQuestion()
           .then(this.setNextQuestion)
-          .catch(this.changeStatus.bind(null, status.ENDED))
+          .catch(this.handleEnd.bind(null, currentItem.isAnswerCorrect))
           .finally(this.updateScore.bind(null, currentItem.isAnswerCorrect))
       }
     },
@@ -166,7 +166,19 @@ export default {
 
     handleTimerTimesUp() {
       setTimeout(this.handleClickAnswer.bind(null, {}), 500);
-    }
+    },
+
+    handleEnd(isLastQuestionAnswerCorrect) {
+      this.updateScore(isLastQuestionAnswerCorrect);
+      this.changeStatus(status.ENDED);
+      this.$router.replace({
+        name: 'quiz-result',
+        params: {
+          playerName: this.playerName,
+          score: this.score,
+        }
+      });
+    },
   }
 }
 </script>

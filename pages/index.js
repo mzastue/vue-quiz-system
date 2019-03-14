@@ -5,6 +5,7 @@ import QuizEdit from './Quiz/Edit/_slug/Edit';
 import CreatorResult from './Creator/Result';
 import QuizPre from './Quiz';
 import QuizPreEdit from './Quiz/Edit';
+import QuizResult from './Quiz/Result';
 
 export default {
   Home,
@@ -13,5 +14,6 @@ export default {
   QuizEdit,
   CreatorResult,
   QuizPre,
-  QuizPreEdit
+  QuizPreEdit,
+  QuizResult,
 };

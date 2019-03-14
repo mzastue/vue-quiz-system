@@ -46,18 +46,8 @@
           </button>
         </div>
       </template>
-      <div v-else>
-        <div class="ops">
-          <i class="nes-kirby"></i>
-          <Box>
-            Ops! You are not allowed to see this page!
-          </Box>
 
-          <router-link :to="{ name: 'home' }" class="nes-badge">
-            <span class="is-dark">Home</span>
-          </router-link>
-        </div>
-      </div>
+      <NotPermitted v-else />
     </div>
   </LayoutDefault>
 </template>
@@ -65,6 +55,7 @@
 <script>
 import LayoutDefault from '../../../layout/Default';
 import Box from '@/components/NES/Box';
+import NotPermitted from '@/components/Errors/NotPermitted';
 
 export default {
   name: 'PageCreatorResult',
@@ -72,6 +63,7 @@ export default {
   components: {
     LayoutDefault,
     Box,
+    NotPermitted,
   },
 
   data () {

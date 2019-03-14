@@ -23,6 +23,12 @@ export default [
     props: true,
   },
   {
+    path: '/quiz/:slug/result',
+    name: 'quiz-result',
+    component: pages.QuizResult,
+    props: true,
+  },
+  {
     path: '/quiz/edit/:slug',
     name: 'quiz-edit',
     component: pages.QuizEdit,

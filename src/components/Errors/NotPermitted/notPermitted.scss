@@ -1,0 +1,10 @@
+.ops {
+  display: flex;
+  flex-direction: column;
+
+  i,
+  a {
+    margin: 20px 0;
+    align-self: center;
+  }
+}

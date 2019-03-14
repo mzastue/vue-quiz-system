@@ -1,0 +1,18 @@
+.container {
+  display: grid;
+  height: 100vh;
+
+  .wrapper {
+    align-self: center;
+    justify-self: center;
+    margin-bottom: 40px;
+
+    .controls {
+      margin-top: 40px;
+
+      a {
+        margin: 0 40px 20px 0;
+      }
+    }
+  }
+}
