@@ -13,9 +13,9 @@ export default {
    * Is time limit enabled for answer to question
    * true|false
    */
-  timeLimit: true,
+  timeLimit: false,
   /*
    * Time limit for answer [seconds]
    */
-  timeForAnswer: 5,
+  timeForAnswer: 10,
 }

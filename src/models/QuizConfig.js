@@ -9,16 +9,22 @@ class QuizConfig {
   }
 
   setQuestionsCount(count) {
-    this.questionsCount = count;
-    this.questionsAmount = count;
+    if (count >= 0) {
+      this.questionsCount = count;
+      this.questionsAmount = count;
+    }
   }
 
   setQuestionsTimeLimit(isTimeLimit) {
-    this.isTimeLimit = isTimeLimit;
+    if (typeof isTimeLimit === "boolean") {
+      this.isTimeLimit = isTimeLimit;
+    }
   }
 
   setQuestionTimeLimitValue(timeForAnswer) {
-    this.timeForAnswer = timeForAnswer;
+    if (timeForAnswer) {
+      this.timeForAnswer = timeForAnswer;
+    }
   }
 }
 

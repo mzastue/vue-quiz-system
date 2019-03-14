@@ -11,6 +11,6 @@
     { "src": ".*", "dest": "/index.html" }
   ],
   "env": {
-    "VUE_APP_API_URL": "quiz-system-api-iimrzkgo0.now.sh/api/v1"
+    "VUE_APP_API_URL": "quiz-system-api.matteusz.now.sh/api/v1"
   }
 }
