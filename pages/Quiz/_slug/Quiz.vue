@@ -18,8 +18,46 @@
         <form class="form">
           <div class="nes-field">
             <label for="name_field">Your name</label>
-            <input type="text" id="name_field" class="nes-input" v-model="playerName">
+            <input type="text" id="name_field" class="nes-input" v-model="playerName" placeholder="I am just anonymous">
           </div>
+
+          <Box title="Settings">
+            <label for="questions_amount">How many questions?</label>
+            <div class="nes-field is-inline">
+              <input
+                type="number"
+                id="questions_amount"
+                class="nes-input"
+                v-model.number="quizConfig.questionsAmount"
+                step="1"
+                min="1"
+                :max="quizConfig.questionsCount"
+              >
+              &nbsp;<span>/&nbsp;{{ quizConfig.questionsCount }}</span>
+            </div>
+
+            <label for="question_time_limit">Time limit for question (seconds)</label>
+            <div class="nes-field">
+              <input
+                id="question_time_limit"
+                type="number"
+                class="nes-input"
+                placeholder="Seconds"
+                min="0"
+                step="1"
+                v-model.number="quizConfig.timeForAnswer"
+                :disabled="!quizConfig.isTimeLimit"
+              >
+              <label>
+                <input
+                  type="checkbox"
+                  class="nes-checkbox"
+                  v-model="quizConfig.isTimeLimit"
+                />
+                <span>Enable</span>
+              </label>
+            </div>
+          </Box>
 
           <button
             @click.prevent="handleStart"
@@ -32,7 +70,8 @@
     <Quiz
       v-if="isReady"
       :playerName="playerName"
-      :questions="items"
+      :questions="questions"
+      :config="quizConfig"
     />
   </LayoutDefault>
 </template>
@@ -42,6 +81,11 @@ import App from '../../../src/App.vue';
 import Quiz from "../../../src/components/Quiz/Quiz.vue";
 import Item from '../../../src/models/Item';
 import LayoutDefault from '../../../layout/Default';
+import Box from '@/components/NES/Box';
+
+import QuizConfig from '@/models/QuizConfig';
+import defaultConfig from './../../../config';
+import shuffleArray from '@/utils/shuffleArray';
 
 export default {
   name: 'PageQuiz',
@@ -49,6 +93,7 @@ export default {
   components: {
     Quiz,
     LayoutDefault,
+    Box,
   },
 
   props: {
@@ -66,6 +111,8 @@ export default {
       quizName: '',
       playerName: '',
       isReady: false,
+      quizConfig: new QuizConfig(),
+      questions: [],
     }
   },
 
@@ -88,6 +135,9 @@ export default {
     if (quizData) {
       this.quizName = quizData.name;
       this.items = this.createItems(quizData.questions);
+      this.quizConfig.setQuestionsCount(quizData.config.questionsCount);
+      this.quizConfig.setQuestionsTimeLimit(quizData.config.isQuestionTimeLimitEnabled);
+      this.quizConfig.setQuestionTimeLimitValue(quizData.config.questionTimeLimit);
     }
   },
 
@@ -106,6 +156,8 @@ export default {
     },
 
     handleStart () {
+      const shuffledItems = shuffleArray(this.items);
+      this.questions = shuffledItems.slice(0, this.quizConfig.questionsAmount);
       this.isReady = true;
     },
   }

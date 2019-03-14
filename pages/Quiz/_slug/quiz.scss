@@ -23,5 +23,9 @@
     button {
       width: 100%;
     }
+
+    input:disabled {
+      background-color: #adafbc
+    }
   }
 }

@@ -9,7 +9,7 @@
         <TopBarItem name="TIME" :value="timeAmontValue.toString() | pad" align="right" />
       </div>
 
-      <QuizTimer v-if="config.timeLimit !== false"
+      <QuizTimer v-if="config.isTimeLimit"
         @events="setTimerEvents"
         @timesUp="handleTimerTimesUp"
         :start="0"
@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import config from './../../../config';
 import { TopBarItem } from '../NES';
 import Question from './Question';
 import Answers from './Answers';
@@ -81,12 +80,16 @@ export default {
       type: String,
       requied: false,
     },
+
+    config: {
+      type: Object,
+      default: () => ({}),
+    }
   },
 
   data() {
     return {
       scoreLabel: (this.playerName || 'score').toUpperCase(),
-      config,
       score: 0,
       timeAmontValue: 0,
       currentQuestionIndex: 0,
@@ -110,7 +113,7 @@ export default {
 
     round() {
       const currentRound = this.currentQuestionIndex + 1;
-      const totalRounds = this.questions.length;
+      const totalRounds = this.config.questionsAmount;
 
       return `${currentRound} / ${totalRounds}`;
     },
@@ -143,7 +146,7 @@ export default {
       if (!currentItem.wasAnswered) {
         currentItem.checkAnswer(answer);
 
-        if (this.config.timeLimit) {
+        if (this.config.isTimeLimit) {
           this.timerEvents.reset();
         }
 
@@ -159,7 +162,7 @@ export default {
     },
 
     handleQuestionShowUp() {
-      if (this.config.timeLimit) {
+      if (this.config.isTimeLimit) {
         this.timerEvents.start();
       }
     },

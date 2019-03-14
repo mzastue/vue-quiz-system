@@ -53,7 +53,7 @@ export default {
 
   methods: {
     validate() {
-      return this.score > -1 && this.playerName.length;
+      return this.score > -1;
     },
   },
 };
